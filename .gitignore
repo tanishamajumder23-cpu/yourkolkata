@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment files (keep .env.example, ignore real keys)
+.env
+
+# Local JSON data store
+backend/data/*.json
+!backend/data/.gitkeep
+
+# Editor / OS
+.DS_Store

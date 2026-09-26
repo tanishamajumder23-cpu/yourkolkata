@@ -1,0 +1,253 @@
+/* ==========================================================================
+   Warm, handmade palette — cream / terracotta / muted gold. Mobile-first.
+   Serif headers (Fraunces), soft sans body (Nunito), handwriting (Caveat).
+   ========================================================================== */
+:root {
+  --cream: #faf3e7;
+  --cream-deep: #f3e7d1;
+  --paper: #fffaf1;
+  --terracotta: #c8663f;
+  --terracotta-deep: #a24f2e;
+  --gold: #c9a24b;
+  --ink: #3a2f28;
+  --ink-soft: #6f6053;
+  --shadow: 0 14px 34px rgba(88, 55, 30, 0.16);
+  --radius: 20px;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root { margin: 0; min-height: 100%; }
+
+body {
+  font-family: 'Nunito', system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; font-weight: 600; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1.3rem;
+  background: var(--terracotta);
+  color: #fff;
+  font-weight: 700;
+  transition: transform 0.12s ease, background 0.2s ease, opacity 0.2s ease;
+}
+button:hover:not(:disabled) { background: var(--terracotta-deep); transform: translateY(-1px); }
+button:disabled { opacity: 0.5; cursor: default; }
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--cream-deep);
+  border-radius: 12px;
+  background: var(--paper);
+  color: var(--ink);
+  width: 100%;
+}
+input:focus, textarea:focus, select:focus { outline: 2px solid var(--gold); border-color: var(--gold); }
+
+/* ==========================================================================
+   INTAKE PAGE — deliberately calm and minimal.
+   ========================================================================== */
+.intake-wrap {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: radial-gradient(120% 90% at 50% 0%, var(--paper), var(--cream) 60%, var(--cream-deep));
+}
+.intake-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--paper);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem 1.6rem;
+  text-align: center;
+}
+.intake-title { font-size: 2rem; margin: 0 0 0.3rem; color: var(--terracotta-deep); }
+.intake-sub { color: var(--ink-soft); margin: 0 0 1.4rem; font-size: 1.05rem; }
+.intake-input { text-align: left; resize: vertical; }
+.intake-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 1.4rem; justify-content: center; }
+.chip {
+  background: var(--cream-deep);
+  color: var(--ink);
+  font-weight: 600;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.9rem;
+}
+.chip:hover { background: var(--gold); color: #fff; }
+.intake-submit { width: 100%; padding: 0.9rem; font-size: 1.05rem; }
+.intake-error { color: var(--terracotta-deep); font-weight: 600; }
+.intake-tick { font-size: 3rem; }
+.intake-thanks { color: var(--terracotta-deep); font-size: 2rem; margin: 0.4rem 0; }
+
+/* ==========================================================================
+   ADMIN PAGE — functional, plainer than the trip page but still on-palette.
+   ========================================================================== */
+.admin { max-width: 860px; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+.admin-head h1 { font-size: 2rem; margin: 0.5rem 0 0.2rem; color: var(--terracotta-deep); }
+.admin-note { color: var(--ink-soft); margin-top: 0; }
+.panel {
+  background: var(--paper);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(88, 55, 30, 0.08);
+  padding: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+.panel h2 { margin: 0 0 0.8rem; font-size: 1.25rem; }
+.panel-head { display: flex; justify-content: space-between; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.row { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+.row label { font-weight: 700; }
+.row input { flex: 1; min-width: 140px; }
+.hint { color: var(--ink-soft); font-size: 0.9rem; }
+.hint code, .interests-box code { background: var(--cream-deep); padding: 0.1rem 0.4rem; border-radius: 6px; word-break: break-all; }
+.interests-box { background: var(--cream); border-radius: 12px; padding: 0.8rem; }
+.grid2 { display: grid; grid-template-columns: 1fr; gap: 0.6rem; margin-bottom: 0.9rem; }
+.tag-secret { font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--terracotta); background: none; }
+.mock-flag { color: var(--terracotta-deep); background: #fdeede; border-radius: 10px; padding: 0.5rem 0.7rem; font-weight: 600; font-size: 0.9rem; }
+.primary { margin-top: 0.6rem; }
+
+.cards { display: grid; grid-template-columns: 1fr; gap: 0.8rem; }
+.s-card {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 0.7rem;
+  align-items: start;
+  border: 2px solid var(--cream-deep);
+  border-radius: 14px;
+  padding: 0.6rem;
+  cursor: pointer;
+  position: relative;
+  background: var(--cream);
+}
+.s-card.on { border-color: var(--gold); background: #fffdf6; }
+.s-card.off { opacity: 0.55; }
+.s-card input { width: auto; position: absolute; top: 0.6rem; right: 0.6rem; }
+.s-card img { width: 72px; height: 72px; object-fit: cover; border-radius: 10px; }
+.s-name { font-weight: 700; font-family: 'Fraunces', serif; }
+.s-cat { font-size: 0.85rem; color: var(--gold); font-weight: 700; }
+.s-reason { font-size: 0.92rem; margin-top: 0.2rem; }
+.s-addr { font-size: 0.8rem; color: var(--ink-soft); margin-top: 0.2rem; }
+
+.preview { list-style: none; padding: 0; margin: 0 0 1rem; }
+.preview li { display: flex; gap: 0.7rem; align-items: baseline; padding: 0.4rem 0; border-bottom: 1px dashed var(--cream-deep); }
+.p-time { font-weight: 700; min-width: 78px; color: var(--terracotta-deep); }
+.p-slot { font-size: 0.8rem; color: var(--gold); font-weight: 700; min-width: 72px; }
+.p-name { font-family: 'Fraunces', serif; }
+.closing-label { display: block; font-weight: 700; margin: 0.4rem 0; }
+.saved { background: #eef6ea; border-radius: 10px; padding: 0.7rem; font-weight: 600; word-break: break-all; }
+.admin-msg { background: #fdeede; border-radius: 10px; padding: 0.7rem; color: var(--terracotta-deep); font-weight: 600; }
+
+/* ==========================================================================
+   TRIP PAGE — the "wow". Postcards, warm light, fade-in reveal.
+   ========================================================================== */
+.trip { max-width: 620px; margin: 0 auto; padding: 0 1rem 4rem; }
+.trip-msg { text-align: center; padding: 4rem 1rem; color: var(--ink-soft); font-size: 1.2rem; }
+
+.trip-hero { text-align: center; padding: 3rem 0.5rem 2rem; }
+.trip-kicker { font-family: 'Caveat', cursive; font-size: 1.5rem; color: var(--terracotta); margin: 0; }
+.trip-title { font-size: 2.6rem; margin: 0.2rem 0 0.6rem; color: var(--terracotta-deep); line-height: 1.05; }
+.trip-when { color: var(--ink-soft); margin: 0; }
+
+.timeline { display: flex; flex-direction: column; gap: 2.2rem; }
+
+.stop-time { font-weight: 700; color: var(--terracotta-deep); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.5rem; font-size: 1.05rem; }
+.stop-time .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 4px rgba(201,162,75,0.25); }
+.stop-time .slot { font-family: 'Caveat', cursive; font-size: 1.2rem; color: var(--gold); }
+
+/* Postcard */
+.postcard {
+  background: var(--paper);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+  transform: rotate(-0.4deg);
+}
+.stop:nth-child(even) .postcard { transform: rotate(0.5deg); }
+.photo-frame { position: relative; aspect-ratio: 4 / 3; background: var(--cream-deep); }
+.photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.photo-fallback { width: 100%; height: 100%; display: grid; place-items: center; font-size: 3rem; }
+.stamp {
+  position: absolute; top: 0.8rem; right: 0.8rem;
+  background: var(--paper); color: var(--terracotta-deep);
+  font-family: 'Fraunces', serif; font-weight: 700;
+  width: 42px; height: 42px; border-radius: 8px;
+  display: grid; place-items: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15); transform: rotate(6deg);
+  border: 2px dashed var(--gold);
+}
+.postcard-body { padding: 1.1rem 1.2rem 1.4rem; }
+.stop-name { font-size: 1.7rem; margin: 0 0 0.2rem; }
+.stop-cat { color: var(--gold); font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; }
+.stop-blurb { font-size: 1.08rem; line-height: 1.5; margin: 0.3rem 0; }
+.stop-addr { font-size: 0.85rem; color: var(--ink-soft); }
+
+/* Secret spot — visually distinct, handwritten */
+.stop.secret .postcard { background: #fff8ec; border: 2px solid var(--gold); }
+.secret-note {
+  font-family: 'Caveat', cursive; font-size: 1.35rem; color: var(--terracotta-deep);
+  padding: 0.7rem 1.2rem 0; display: flex; align-items: center; gap: 0.5rem;
+}
+.secret-icon {
+  display: inline-grid; place-items: center; width: 28px; height: 28px;
+  background: var(--gold); color: #fff; border-radius: 50%; font-size: 1rem;
+  transform: rotate(-8deg);
+}
+
+/* Map pin */
+.map-pin { margin-top: 0.9rem; border-radius: 14px; overflow: hidden; border: 1.5px solid var(--cream-deep); }
+.map-pin iframe { width: 100%; height: 150px; border: 0; display: block; }
+.map-open { display: block; text-align: center; padding: 0.5rem; font-weight: 700; color: var(--terracotta-deep); text-decoration: none; background: var(--cream); }
+
+/* Locked stop — blurred, teasing */
+.stop.locked .locked-inner {
+  background: repeating-linear-gradient(45deg, var(--cream-deep), var(--cream-deep) 14px, var(--cream) 14px, var(--cream) 28px);
+  border-radius: var(--radius);
+  padding: 2.6rem 1rem;
+  text-align: center;
+  filter: saturate(0.7);
+  box-shadow: inset 0 0 0 2px rgba(201,162,75,0.35);
+}
+.lock-icon { font-size: 2rem; opacity: 0.7; }
+.lock-time { font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--terracotta-deep); margin-top: 0.3rem; }
+.lock-sub { font-family: 'Caveat', cursive; font-size: 1.2rem; color: var(--gold); }
+
+/* Closing note */
+.closing { margin-top: 2.6rem; }
+.closing-card {
+  background: linear-gradient(160deg, #fff8ec, var(--cream-deep));
+  border-radius: var(--radius);
+  padding: 2rem 1.6rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.closing-flourish { font-size: 2rem; color: var(--gold); }
+.closing-text { font-family: 'Caveat', cursive; font-size: 1.7rem; line-height: 1.4; color: var(--ink); margin: 0.5rem 0 0; }
+
+/* Fade-in reveal animation */
+.reveal { animation: rise 0.7s ease both; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Slightly roomier on larger screens */
+@media (min-width: 560px) {
+  .grid2 { grid-template-columns: 1fr 1fr; }
+  .cards { grid-template-columns: 1fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; }
+  button:hover:not(:disabled) { transform: none; }
+}
