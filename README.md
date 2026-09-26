@@ -107,9 +107,38 @@ Every mock path is commented in the source under a big
 
 ## Storage
 
-A single JSON file at `backend/data/db.json` (git-ignored). No database needed
-at this scale. Two collections: `interests` (keyed by `linkId`) and
-`itineraries` (keyed by the short save id).
+Two interchangeable backends behind one API — it picks automatically:
+
+- **Local (default):** a single JSON file at `backend/data/db.json` (git-ignored).
+  Zero setup for `npm start` on your machine.
+- **Production (durable):** **Upstash Redis**, used automatically when the
+  environment provides `KV_REST_API_URL` + `KV_REST_API_TOKEN` (or the
+  `UPSTASH_REDIS_REST_URL` / `_TOKEN` pair). This is what keeps a shared trip
+  link working over time in the cloud, where local files don't survive.
+
+`GET /api/health` reports which one is active.
+
+---
+
+## Deploying so you can share a link (Vercel + Upstash)
+
+A serverless host like Vercel has **no permanent disk**, so the JSON-file store
+won't survive there — a saved trip would disappear. That's why deploys use
+Upstash (a free, always-on Redis). Setup, once:
+
+1. Push this repo to GitHub (already done if you're reading this there).
+2. On **vercel.com** → **Add New → Project** → import this repo. Leave the
+   defaults — `vercel.json` already sets the build. Don't deploy yet.
+3. In the project, open **Storage → Marketplace → Upstash (Redis)** → create a
+   free database and connect it. Vercel injects the `KV_REST_API_URL` /
+   `KV_REST_API_TOKEN` env vars for you.
+4. In **Settings → Environment Variables**, add your own two keys:
+   `GROQ_API_KEY` and `GOOGLE_MAPS_API_KEY`. (Add them here — never commit them.)
+5. **Deploy.** You'll get a `https://<name>.vercel.app` link.
+
+Then: open `…/admin` to curate and save a trip, and share the generated
+`…/trip/<id>` link. (The intake link `…/tell-me/<anything>` is what you'd send
+first if you want them to enter their own interests.)
 
 ## Design notes (trip page)
 

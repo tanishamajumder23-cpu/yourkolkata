@@ -70,14 +70,14 @@ router.post('/build', async (req, res) => {
 // POST /api/itinerary/save
 // { itinerary: [...], closingNote?: string, start?: {...}, startTime?: string, title?: string }
 // Saves with a short unique id and returns the shareable path.
-router.post('/save', (req, res) => {
+router.post('/save', async (req, res) => {
   const itinerary = Array.isArray(req.body?.itinerary) ? req.body.itinerary : null;
   if (!itinerary || itinerary.length === 0) {
     return res.status(400).json({ error: 'Nothing to save — build an itinerary first.' });
   }
 
   const id = nanoid(8);
-  const record = saveItinerary(id, {
+  const record = await saveItinerary(id, {
     itinerary,
     closingNote: (req.body?.closingNote || '').toString(),
     start: req.body?.start ?? null,
@@ -89,8 +89,8 @@ router.post('/save', (req, res) => {
 });
 
 // GET /api/itinerary/:id — the trip page reads this to render.
-router.get('/:id', (req, res) => {
-  const record = getItinerary(req.params.id);
+router.get('/:id', async (req, res) => {
+  const record = await getItinerary(req.params.id);
   if (!record) return res.status(404).json({ error: 'This trip link was not found.' });
   res.json(record);
 });
